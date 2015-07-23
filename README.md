@@ -1,5 +1,7 @@
 # LyricFind
 
+[![Gem Version](https://badge.fury.io/rb/LyricFind.svg)](http://badge.fury.io/rb/LyricFind)
+
 This gem allows your application to access LyricFind's API services 
 
 ## Installation
