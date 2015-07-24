@@ -4,4 +4,5 @@ source 'https://rubygems.org'
 gemspec
 
 gem 'bundler'
-gem 'vcr'
+gem 'vcr', group: :test
+
