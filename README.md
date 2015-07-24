@@ -9,7 +9,7 @@ This gem allows your application to access LyricFind's API services
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'lyricfind'
+gem 'LyricFind'
 ```
 
 And then execute:
@@ -18,7 +18,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install lyricfind
+    $ gem install LyricFind
 
 ## Running tests
 
