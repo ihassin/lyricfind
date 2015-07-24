@@ -38,10 +38,27 @@ describe LyricFind do
         expect(lyrics).to be nil
       end
     end
-    it 'does not return lyrics when given a null artist name'
 
-    it 'does not return lyrics when given a blank song name'
-    it 'does not return lyrics when given a blank artist name'
+    it 'does not return lyrics when given a null artist name' do
+      VCR.use_cassette "bad_data" do
+        lyrics = @lf.get_lyrics_by_song_name nil, 'one'
+        expect(lyrics).to be nil
+      end
+    end
+
+    it 'does not return lyrics when given a blank song name' do
+      VCR.use_cassette "bad_data" do
+        lyrics = @lf.get_lyrics_by_song_name 'u2', ''
+        expect(lyrics).to be nil
+      end
+    end
+
+    it 'does not return lyrics when given a blank artist name' do
+      VCR.use_cassette "bad_data" do
+        lyrics = @lf.get_lyrics_by_song_name '', 'one'
+        expect(lyrics).to be nil
+      end
+    end
   end
 
 end
