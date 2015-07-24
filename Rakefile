@@ -12,5 +12,5 @@ task :build do
 end
 
 task :release => :build do
-  system "gem push lyricfind-#{LYRICFIND::VERSION}"
+  system "gem push lyricfind-#{LyricFind::VERSION}"
 end
