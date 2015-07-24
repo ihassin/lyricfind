@@ -24,11 +24,24 @@ describe LyricFind do
     end
   end
 
-  it 'does not return lyrics when given a non-existent song name' do
-    VCR.use_cassette "non_existent_song" do
-      lyrics = @lf.get_lyrics_by_song_name 'u2', 'zbubu'
-      expect(lyrics).to be nil
+  describe "negative cases" do
+    it 'does not return lyrics when given a non-existent song name' do
+      VCR.use_cassette "non_existent_song" do
+        lyrics = @lf.get_lyrics_by_song_name 'u2', 'zbubu'
+        expect(lyrics).to be nil
+      end
     end
+
+    it 'does not return lyrics when given a null song name' do
+      VCR.use_cassette "bad_data" do
+        lyrics = @lf.get_lyrics_by_song_name 'u2', nil
+        expect(lyrics).to be nil
+      end
+    end
+    it 'does not return lyrics when given a null artist name'
+
+    it 'does not return lyrics when given a blank song name'
+    it 'does not return lyrics when given a blank artist name'
   end
 
 end

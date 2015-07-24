@@ -9,32 +9,46 @@ module LyricFind
     end
 
     def get_lyrics_by_song_name artist, song_name
-      query_url = URI.escape "http://api.lyricfind.com/search.do?apikey=#{@search_key}&reqtype=default&searchtype=track&artist=#{artist}&track=#{song_name}"
-      response = open(query_url).read
-      doc = Nokogiri::HTML(response)
-      doc.encoding = 'utf-8'
+      return nil if artist.nil? or artist.length == 0
+      return nil if song_name.nil? or song_name.length == 0
 
-      return nil if !(check_success doc, 100)
-      tracks = doc.xpath('//tracks')[0]['totalresults'].to_i
-      return nil if tracks == 0
+      artist = URI.escape artist
+      song_name = URI.escape song_name
 
-      track = doc.xpath('//tracks/track')[0]['amg']
+      begin
+        query_url = URI.escape "http://api.lyricfind.com/search.do?apikey=#{@search_key}&reqtype=default&searchtype=track&artist=#{artist}&track=#{song_name}"
+        response = open(query_url).read
+        doc = Nokogiri::HTML(response)
+        doc.encoding = 'utf-8'
 
-      query_url = URI.escape "http://api.lyricfind.com/lyric.do?apikey=#{@display_key}&reqtype=default&trackid=amg:#{track}"
+        return nil if !(check_success doc, 100)
+        tracks = doc.xpath('//tracks')[0]['totalresults'].to_i
+        return nil if tracks == 0
 
-      response = open(query_url).read
-      doc = Nokogiri::HTML(response)
-      doc.encoding = 'utf-8'
+        track = doc.xpath('//tracks/track')[0]['amg']
 
-      return nil if !(check_success doc, 101)
+        query_url = URI.escape "http://api.lyricfind.com/lyric.do?apikey=#{@display_key}&reqtype=default&trackid=amg:#{track}"
 
-      lyrics = doc.xpath('//lyrics')
-      lyrics[0].content
+        response = open(query_url).read
+        doc = Nokogiri::HTML(response)
+        doc.encoding = 'utf-8'
+
+        return nil if !(check_success doc, 101)
+
+        lyrics = doc.xpath('//lyrics')
+        lyrics[0].content
+      rescue
+        nil
+      end
     end
 
     def check_success doc, code
-      response = doc.xpath('//response')
-      response[0]['code'].to_i == code
+      begin
+        response = doc.xpath('//response')
+        response[0]['code'].to_i == code
+      rescue
+        false
+      end
     end
 
   end
