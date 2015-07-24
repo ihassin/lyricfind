@@ -13,4 +13,5 @@ spec/lyricfind.yml
 spec/vcr_cassettes/*
 *.gem
 build/**
-
+pkg/**
+install/**
