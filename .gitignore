@@ -11,4 +11,5 @@
 log/**
 spec/lyricfind.yml
 spec/vcr_cassettes/*
+*.gem
 
