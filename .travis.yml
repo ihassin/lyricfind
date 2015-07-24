@@ -1,3 +1,5 @@
+require 'bundler/setup'
+
 language: ruby
 rvm:
   - 2.2.1

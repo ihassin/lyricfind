@@ -57,5 +57,5 @@ DEPENDENCIES
   cucumber (~> 2.0)
   rake (~> 10.0)
   rspec (~> 3.0)
-  vcr
+  vcr (~> 2.9)
   webmock (~> 1.21)
