@@ -32,7 +32,15 @@ rake
 
 ## Usage
 
-For usage examples, please see [here](https://github.com/ihassin/lyricfind/blob/master/spec/lyricfind_spec.rb)
+For usage examples from tests, please see [here](https://github.com/ihassin/lyricfind/blob/master/spec/lyricfind_spec.rb)
+
+Simple example:
+```ruby
+require 'LyricFind'
+
+lf = LyricFind::API.new 'search-key', 'display-key'
+puts lf.get_lyrics_by_song_name 'u2', 'one'
+```
 
 ## Contributing
 
