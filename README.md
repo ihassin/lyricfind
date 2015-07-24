@@ -1,6 +1,6 @@
 # LyricFind
 
-[![Gem Version](https://badge.fury.io/rb/LyricFind.svg)](http://badge.fury.io/rb/LyricFind) | [![Code Climate](https://codeclimate.com/github/ihassin/lyricfind/badges/gpa.svg)](https://codeclimate.com/github/ihassin/lyricfind)
+[![Gem Version](https://badge.fury.io/rb/LyricFind.svg)](http://badge.fury.io/rb/LyricFind) | [![Code Climate](https://codeclimate.com/github/ihassin/lyricfind/badges/gpa.svg)](https://codeclimate.com/github/ihassin/lyricfind) | [![License](http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](http://opensource.org/licenses/MIT) | [![Issues](http://img.shields.io/github/issues/ihassin/lyricfind.svg?style=flat-square)](http://github.com/ihassin/lyricfind/issues) | [![Releases](http://img.shields.io/github/release/ihassin/lyricfind.svg?style=flat-square)](http://github.com/ihassin/lyricfind/releases)
 
 This gem allows your application to access LyricFind's API services 
 
