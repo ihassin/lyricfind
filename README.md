@@ -56,4 +56,4 @@ puts lf.get_lyrics_by_song_name 'u2', 'one'
 
 ## Other efforts
 
-Look [here](https://github.com/pilu/lyricfind) if you're looking for a Python impementation
+Look [here](https://github.com/pilu/lyricfind) if you're looking for am impementation in Go
