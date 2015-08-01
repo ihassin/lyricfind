@@ -53,3 +53,7 @@ puts lf.get_lyrics_by_song_name 'u2', 'one'
 ## License
 
 [MIT](https://github.com/ihassin/lyricfind/blob/master/LICENSE.txt).
+
+## Other efforts
+
+Look [here](https://github.com/pilu/lyricfind) if you're looking for am impementation in Go
