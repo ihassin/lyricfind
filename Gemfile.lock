@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    LyricFind (0.1.4)
+    LyricFind (0.1.5)
       nokogiri (~> 1.6)
 
 GEM
