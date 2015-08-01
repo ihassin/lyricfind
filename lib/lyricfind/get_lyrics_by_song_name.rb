@@ -16,14 +16,8 @@ module LyricFind
       song_name = URI.escape song_name
 
       begin
-        query_url = URI.escape "http://api.lyricfind.com/search.do?apikey=#{@search_key}&reqtype=default&searchtype=track&artist=#{artist}&track=#{song_name}"
-        response = open(query_url).read
-        doc = Nokogiri::HTML(response)
-        doc.encoding = 'utf-8'
-
-        return nil if !(check_success doc, 100)
-        tracks = doc.xpath('//tracks')[0]['totalresults'].to_i
-        return nil if tracks == 0
+        doc = get_api_response artist, song_name
+        return if doc == nil
 
         track = doc.xpath('//tracks/track')[0]['amg']
 
@@ -40,6 +34,18 @@ module LyricFind
       rescue
         nil
       end
+    end
+
+    def get_api_result artist, song_name
+      query_url = URI.escape "http://api.lyricfind.com/search.do?apikey=#{@search_key}&reqtype=default&searchtype=track&artist=#{artist}&track=#{song_name}"
+      response = open(query_url).read
+      doc = Nokogiri::HTML(response)
+      doc.encoding = 'utf-8'
+
+      return nil if !(check_success doc, 100)
+      tracks = doc.xpath('//tracks')[0]['totalresults'].to_i
+      return nil if tracks == 0
+      doc
     end
 
     def check_success doc, code
