@@ -25,11 +25,29 @@ describe LyricFind do
       end
     end
 
-    it 'returns correctly states that a song is not instrumental' do
+    it 'correctly states that a song is not instrumental' do
       VCR.use_cassette "song_exists" do
         expect(@lf.instrumental? 'u2', 'one') == false
       end
+    end
 
+    it 'returns the duration of the song' do
+      VCR.use_cassette "song_exists" do
+        expect(@lf.duration 'u2', 'one').to eq '4:36'
+      end
+    end
+
+    it 'returns the name of the album' do
+      VCR.use_cassette "song_exists" do
+        expect(@lf.album 'u2', 'one').to eq 'Achtung Baby        U2'
+      end
+    end
+
+    it 'returns the snippet' do
+      VCR.use_cassette "song_exists" do
+        lyrics = @lf.get_snippet_by_song_name 'u2', 'one'
+        expect(lyrics.length).to be > 0
+      end
     end
   end
 

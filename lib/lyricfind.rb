@@ -1,3 +1,6 @@
 require "lyricfind/version"
 require "lyricfind/get_lyrics_by_song_name"
 require "lyricfind/instrumental"
+require "lyricfind/duration"
+require "lyricfind/album"
+require "lyricfind/get_snippet_by_song_name"
