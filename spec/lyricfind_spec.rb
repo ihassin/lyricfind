@@ -21,7 +21,7 @@ describe LyricFind do
     it 'returns lyrics when given a song name' do
       VCR.use_cassette "song_exists" do
         lyrics = @lf.get_lyrics_by_song_name 'u2', 'one'
-        expect(lyrics) != nil
+        expect(lyrics.length).to be > 0
       end
     end
 
@@ -29,13 +29,13 @@ describe LyricFind do
       VCR.use_cassette "song_exists" do
         expect(@lf.instrumental? 'u2', 'one') == false
       end
-    end
 
+    end
   end
 
   describe "negative cases" do
-    it 'does not return lyrics when given a non-existent song name' do
-      VCR.use_cassette "non_existent_song" do
+    VCR.use_cassette "non_existent_song" do
+      it 'does not return lyrics when given a non-existent song name' do
         lyrics = @lf.get_lyrics_by_song_name 'u2', 'zbubu'
         expect(lyrics).to be nil
       end
@@ -53,6 +53,7 @@ describe LyricFind do
         lyrics = @lf.get_lyrics_by_song_name nil, 'one'
         expect(lyrics).to be nil
       end
+
     end
 
     it 'does not return lyrics when given a blank song name' do
