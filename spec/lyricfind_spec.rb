@@ -49,6 +49,14 @@ describe LyricFind do
         expect(lyrics.length).to be > 0
       end
     end
+
+    it 'returns a populated song object' do
+      VCR.use_cassette "song_exists" do
+        song = @lf.get_song_info 'u2', 'one'
+        expect(song.lyrics.length).to be > 0
+        expect(song.instrumental).to eq false
+      end
+    end
   end
 
   describe "negative cases" do
