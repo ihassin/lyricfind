@@ -7,7 +7,7 @@ module LyricFind
       doc = get_search_api_response artist, song_name
       return nil if doc.nil?
 
-      return doc.xpath('//tracks/track')[0]['duration']
+      get_duration doc
 
     end
   end

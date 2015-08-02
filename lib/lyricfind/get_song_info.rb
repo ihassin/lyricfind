@@ -8,16 +8,40 @@ module LyricFind
       doc = get_search_api_response artist, song_name
       return if doc == nil
 
-      song_info.artist = artist
-      song_info.song_name = song_name
-      song_info.album =       doc.xpath('//album')[0].content.gsub("\r\n", '').strip
-      song_info.duration = doc.xpath('//tracks/track')[0]['duration']
-      song_info.snippet = doc.xpath('//snippet')[0].content.gsub("\r\n",'').strip
-      song_info.instrumental = doc.xpath('//tracks/track')[0]['instrumental'] == 'true'
+      song_info.artist        = artist
+      song_info.song_name     = song_name
+      song_info.album         = get_album doc
+      song_info.duration      = get_duration doc
+      song_info.snippet       = get_snippet doc
+      song_info.instrumental  = get_instrumental doc
 
+      song_info.lyrics = get_lyrics get_track_amg doc
+
+      song_info
+    end
+
+    def get_album doc
+      doc.xpath('//album')[0].content.gsub("\r\n", '').strip
+    end
+
+    def get_duration doc
+      doc.xpath('//tracks/track')[0]['duration']
+    end
+
+    def get_snippet doc
+      doc.xpath('//snippet')[0].content.gsub("\r\n",'').strip
+    end
+
+    def get_instrumental doc
+      doc.xpath('//tracks/track')[0]['instrumental'] == 'true'
+    end
+
+    def get_track_amg doc
+      doc.xpath('//tracks/track')[0]['amg']
+    end
+
+    def get_lyrics track
       begin
-        track = doc.xpath('//tracks/track')[0]['amg']
-
         query_url = URI.escape "http://api.lyricfind.com/lyric.do?apikey=#{@display_key}&reqtype=default&trackid=amg:#{track}"
 
         response = open(query_url).read
@@ -27,13 +51,11 @@ module LyricFind
         return nil if !(check_success doc, 101)
 
         lyrics = doc.xpath('//lyrics')
-        song_info.lyrics = lyrics[0].content
+        lyrics[0].content
       rescue Exception => ex
         nil
       end
-      song_info
 
     end
-
   end
 end

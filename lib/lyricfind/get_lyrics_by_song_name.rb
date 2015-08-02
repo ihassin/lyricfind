@@ -12,23 +12,7 @@ module LyricFind
       doc = get_search_api_response artist, song_name
       return if doc == nil
 
-      begin
-
-        track = doc.xpath('//tracks/track')[0]['amg']
-
-        query_url = URI.escape "http://api.lyricfind.com/lyric.do?apikey=#{@display_key}&reqtype=default&trackid=amg:#{track}"
-
-        response = open(query_url).read
-        doc = Nokogiri::HTML(response)
-        doc.encoding = 'utf-8'
-
-        return nil if !(check_success doc, 101)
-
-        lyrics = doc.xpath('//lyrics')
-        lyrics[0].content
-      rescue Exception => ex
-        nil
-      end
+      get_lyrics get_track_amg doc
     end
 
     def get_search_api_response artist, song_name
