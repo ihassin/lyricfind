@@ -34,7 +34,21 @@ rake
 
 For usage examples from tests, please see [here](https://github.com/ihassin/lyricfind/blob/master/spec/lyricfind_spec.rb)
 
-Simple example:
+Example for getting a song object back with info:
+
+```ruby
+lf = LyricFind::API.new 'search-key', 'display-key'
+song = lf.get_song_info 'u2', 'one'
+# => song.lyrics
+# => song.artist
+# => song.song_name
+# => song.album
+# => song.duration
+# => song.snippet
+# => song.instrumental
+```
+
+Example for getting just the lyrics:
 ```ruby
 require 'LyricFind'
 
