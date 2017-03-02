@@ -56,6 +56,8 @@ lf = LyricFind::API.new 'search-key', 'display-key'
 puts lf.get_lyrics_by_song_name 'u2', 'one'
 ```
 
+## Running from the command line
+
 ## Contributing
 
 1. Fork it (https://github.com/ihassin/lyricfind/fork)
