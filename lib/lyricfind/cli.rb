@@ -1,3 +1,3 @@
 require_relative 'command_line'
 
-CommandLine.parse(ARGV)
+CommandLine.run(ARGV)
